@@ -1,3 +1,4 @@
+package src;
 public class Card extends Deck {
     public Rank face_value;
     public Suit type;
