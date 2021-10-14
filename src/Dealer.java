@@ -23,10 +23,16 @@ public class Dealer {
 
     }
 
+    public void deal_player(Player player){
+        for (Hand hand: player.hands) {
+            hand.cards.add(pick_a_card());
+        }
+    }
+
     public Card pick_a_card() {
         while (true) {
-            int random_card = (int) (Math.random() * ((52) + 1));
-            int random_deck = (int) (Math.random() * ((table.no_of_decks) + 1));
+            int random_card = (int) (Math.random() * (52));
+            int random_deck = (int) (Math.random() * (table.no_of_decks));
 
             int[] id = {random_deck,random_card};
             if (!table.used_cards.contains(id)){
