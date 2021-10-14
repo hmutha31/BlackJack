@@ -20,4 +20,16 @@ public class Table {
         this.number_of_players++;
     }
 
+    public void print_all_cards(){
+        for (Player player: this.players) {
+            System.out.println("The cards of "+" "+player.name + " are:");
+            for (Hand hand: player.hands) {
+                for (Card card: hand.cards){
+                    System.out.println(card.face_value);
+                }
+
+            }
+        }
+    }
+
 }

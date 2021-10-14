@@ -19,7 +19,6 @@ public class Dealer {
     public void deal(){
         for (Player player:table.players) {
             player.hands.get(0).cards.add(pick_a_card());
-
         }
 
     }

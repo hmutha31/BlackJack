@@ -21,6 +21,17 @@ public class Player {
     this.wallet=1000;
     }
 
+    public void split(){
+        Hand new_hand = new Hand();
+        new_hand.addCard(this.hands.get(0).cards.get(0));
+        this.hands.get(0).cards.remove(0);
+        this.hands.add(new_hand);
+    }
+
+
+
+
+
 
 
 

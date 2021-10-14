@@ -25,6 +25,7 @@ public class Blackjack {
         Dealer dealer = new Dealer(table);
 
         System.out.println("Every player's wallet has been loaded with 100 USD!");
+
         System.out.println("Enter the number of Decks you want to play with:");
         table.no_of_decks = scan.nextInt();
         for (int i =0;i<table.no_of_decks;i++){
@@ -32,11 +33,20 @@ public class Blackjack {
             table.decks.add(temp);
         }
 
+        dealer.deal();      ///////give 2 cards to each player
+        dealer.deal();
+        table.print_all_cards(); /////////print all the cards
+
+        ////////////place bet
+
+        
+
+
+
+
+
+
     }
-
-
-
-
 
 
 
