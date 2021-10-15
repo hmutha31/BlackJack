@@ -3,8 +3,14 @@ package src;
 import java.util.ArrayList;
 
 public class Printer {
-    public static void print_cards_with_hidden(ArrayList<Card> cards){
-        System.out.println("The dealer's cards are");
+    public static void print_cards_with_hidden(ArrayList<Card> cards, Object person){
+        if(person instanceof Dealer) {
+            System.out.println("The dealers cards are : ");
+        }else {
+            Player player = (Player)person;
+            System.out.println("The cards of "+player.name+ " are :");
+        }
+       // System.out.println("The dealer's cards are");
         int flag=0;
         for (Card card:cards) {
             if (flag==0){
@@ -13,6 +19,13 @@ public class Printer {
                 continue;
             }
             System.out.println(card.face_value+ " of "+card.type);
+        }
+
+    }
+
+    public static void print_balances(ArrayList<Player> players){
+        for(Player player: players) {
+            System.out.println(player.name+" balance is : "+player.wallet.value);
         }
 
     }

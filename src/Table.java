@@ -66,6 +66,9 @@ public class Table {
 
     public void place_bets(){
         for (Player player: this.players) {
+            if(player.isBusted()){
+                continue;
+            }
             boolean flag = true;
             int temp_bet = 0;
             while (flag) {
@@ -83,11 +86,11 @@ public class Table {
         }
     }
 
-    public void print_player_balances(){
-        for(Player player: this.players) {
-            System.out.println(player.name+" balance is : "+player.wallet.value);
-        }
-    }
+//    public void print_player_balances(){
+//        for(Player player: this.players) {
+//            System.out.println(player.name+" balance is : "+player.wallet.value);
+//        }
+//    }
 
     public ArrayList<Player> cash_out(){
         ArrayList<Player> playersInGame = new ArrayList<>();
