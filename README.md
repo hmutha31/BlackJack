@@ -27,6 +27,6 @@ To run this project:
 ## Team Members
 The developers who worked on this project are:
 * Shekhar Sharma (U43306392 , shekhars@bu.edu)
-* Shweta Baindur (shwetab@bu.edu)
+* Shweta Baindur (U73181758 , shwetab@bu.edu)
 * Harsh Mutha (U84186562 , hmutha31@bu.edu)
 
