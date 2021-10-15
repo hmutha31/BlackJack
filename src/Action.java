@@ -2,6 +2,7 @@ package src;
 
 public class Action {
 
+    //Method to split the hand
     public boolean split(Player player, Hand hand,Dealer dealer){
         if (player.wallet.value< hand.bet){
             System.out.println("You don't have enough balance to split!");
@@ -23,26 +24,26 @@ public class Action {
         //deal one card to each hand
         dealer.deal_player(player);
         Printer.print_player_cards(player);
-        //hand.display_Bet();
-
+        hand.display_Bet();
         return true;
     }
 
+    //Method to hit the hand
     public boolean hit(Hand hand,Dealer dealer,Player player,Table table,int[] minmax) {
-        //Hand newHand = new Hand();
         hand.cards.add(dealer.pick_a_card());
         Printer.print_cards(hand.cards, player);
         int stateAfterHit = checkHandState(hand,table,minmax);
         if(stateAfterHit==-1) return false;
         else return true;
-
     }
 
+    //Method to stand
     public boolean stand(Hand hand, Player player){
         Printer.print_cards(hand.cards, player);
         hand.display_Bet();
         return false;
     }
+    //Method to double up the hand
     public boolean double_up(Player player, Hand hand,Dealer dealer){
         if (player.wallet.value< hand.bet){
             System.out.println("You don't have enough balance to double!");
@@ -51,20 +52,28 @@ public class Action {
         player.wallet.subtract_value(hand.bet);
         hand.bet = hand.bet * 2;
         hand.cards.add(dealer.pick_a_card());
-        //hand.print_cards();
         Printer.print_cards(hand.cards, player);
         hand.display_Bet();
         return false;
     }
 
+    //Method to check if player has hit a natural blackjack/trianta
+    public boolean checkNatural(Player player,int maxValue) {
+        Hand hand = player.hands.get(0);
+        if(hand.get_value_of_hand(maxValue)==maxValue) {
+            return true;
+        }
+        return false;
+    }
+
+    //Method to check if the hand is above the max value or not
     public int checkHandState(Hand hand,Table table,int[] minmax) {
         int handState = table.refree.checkHand(hand,minmax);
         switch(handState) {
             case 1 :
                 //player wins
-                System.out.println("You hit Blackjack");
+                System.out.println("You've hit Blackjack!");
                 handState =1;
-                //player.wallet+=(hand.bet*2);
                 break;
             case -1 :
                 hand.setBusted(true);
@@ -78,5 +87,4 @@ public class Action {
         }
         return handState;
     }
-
 }

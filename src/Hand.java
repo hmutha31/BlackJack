@@ -29,25 +29,9 @@ public class Hand {
         this.bet = this.bet + bet;
     }
 
-//    public void print_cards() {
-//        System.out.println("The cards" + " " + " are:");
-//        for (Card card : cards) {
-//            System.out.println(card.face_value);
-//        }
-//    }
-
     public void display_Bet() {
         System.out.println("The bet is: " + this.bet);
-
     }
-
-//    public int get_value_of_hand() {
-//        int temp = 0;
-//        for (Card card : this.cards) {
-//            temp = temp + card.face_value.getValue_of_rank();
-//        }
-//        return temp;
-//    }
 
     public int get_value_of_hand(int maxValue) {
         int temp = 0;
@@ -57,23 +41,13 @@ public class Hand {
                 isThereAnAce = true;
         }
         for (Card card : this.cards) {
-
             temp = temp + card.face_value.getValue_of_rank();
-
-
         }
 
         if(temp > maxValue && isThereAnAce == true)
         {
             temp = temp - 10;
         }
-
         return temp;
     }
-
 }
-
-
-
-
-

@@ -7,7 +7,7 @@ public class Trinata implements Game{
 
     static Table table = new Table();
     static int[] minmax = {27,31};
-
+    Action action = new Action();
 
     @Override
     public void play() {
@@ -21,13 +21,12 @@ public class Trinata implements Game{
             table.set_refree(refree);
 
             dealer.deal();
-            System.out.println("1 Card given to every player and Dealer");
+            System.out.println("1 Card given to every player and the dealer");
             Printer.print_cards(dealer.hand.cards, dealer);
             for(Player player : table.players) {
                 Printer.print_player_cards(player);
             }
             int choice;
-            ////////do you want to place bets
             for(Player player : table.players){
                 System.out.println("Player "+player.name+" Do you want to fold? Please enter 1 for yes and 2 for no ");
                 choice = scan.nextInt();
@@ -41,12 +40,28 @@ public class Trinata implements Game{
 
             dealer.deal();                  //give 1 card to each player
             dealer.deal();                  //give 1 card to each player
-            //Printer.print_cards_with_hidden(dealer.hand.cards);  //print dealers cards with 1 hidden card
             Printer.print_cards(dealer.hand.cards, dealer);
-            //table.print_all_cards();        //print all the cards of players
+
+            //check natural trianta for dealer
+            int sum = dealer.hand.get_value_of_hand(minmax[1]);
+            if(sum==minmax[1]) {
+                //dealer wins
+                System.out.println("Dealer got natural trianta!");
+                for(Player player : table.players) {
+                    dealer.wallet.add_value(player.hands.get(0).bet);
+                }
+                break;
+            }
+
             for(Player player : table.players) {
-                if(player.isBusted()){
+                if(player.isDidHitMax()){
                     continue;
+                }
+                if(action.checkNatural(player,minmax[1])) {
+                    System.out.println("You've hit natural trianta!");
+                    player.wallet.add_value(player.hands.get(0).bet*2);
+                    dealer.wallet.subtract_value(player.hands.get(0).bet*2);
+                    player.setDidHitMax(true);
                 }
                 Printer.print_cards_with_hidden(player.hands.get(0).cards,player);
             }
@@ -55,13 +70,13 @@ public class Trinata implements Game{
                 refree.check_winners(minmax);
             }
             Printer.print_balances(table.players);
-            System.out.println("This Round ends");
+            System.out.println("---------This Round ends---------");
             //ask for cashing out
             table.players = table.cash_out();
             resetRound(table,dealer);
         }while (!table.players.isEmpty());
 
-        System.out.println("Everybody cashed out!");
+        System.out.println("---------Everybody cashed out!---------");
     }
 
     @Override
@@ -85,7 +100,7 @@ public class Trinata implements Game{
 
     @Override
     public void ask_for_actions(int[] minmax, Dealer dealer) {
-        Action action = new Action();
+
         Scanner scanner = new Scanner(System.in);
         for (Player player: table.players) {
             if(player.isBusted()) continue;
@@ -95,8 +110,8 @@ public class Trinata implements Game{
                 if(hand.isBusted()) continue;
                 boolean flag = true;
                 while(flag) {
-                    System.out.println("What do you want to do with hand " + (player.hands.indexOf(hand) + 1) + " " + player.name + "? Hit, Split, Stand....");
-                    System.out.println("Enter 1 for Hit , 2 for Stand.....");
+                    System.out.println("What do you want to do with hand " + (player.hands.indexOf(hand) + 1) + " " + player.name + "?");
+                    System.out.println("Enter 1 for Hit , 2 for Stand");
                     System.out.println("Current value of your hand is "+hand.get_value_of_hand(minmax[1]));
                     int player_choice = scanner.nextInt();
                     if (player_choice == 1) {

@@ -56,15 +56,15 @@ public class Refree {
                 for(Hand hand : player.hands) {
                     if(!hand.isBusted()) {
                         if(hand.get_value_of_hand(minmax[1]) > dealerSum) {
-                            System.out.println(player.name+" Wins!!");
+                            System.out.println(player.name+" Wins!");
                             player.wallet.add_value(hand.bet*2);
                             dealer.wallet.subtract_value(hand.bet*2);
                         }else if(hand.get_value_of_hand(minmax[1])==dealerSum && minmax[0]<27) {
                             player.wallet.add_value(hand.bet);
-                            System.out.println(player.name+" ties with dealer");
+                            System.out.println(player.name+" tied with dealer");
                         }else {
                             dealer.wallet.add_value(hand.bet*2);
-                            System.out.println(player.name+ " loses");
+                            System.out.println(player.name+ " loses!");
                         }
                     }
                 }
@@ -72,7 +72,7 @@ public class Refree {
         }
         else {
             //dealer is busted
-            System.out.println("Dealer Busted!!");
+            System.out.println("-----Dealer Busted!-----");
             dealer.hand.setBusted(true);
             //everyone who stood wins
             for(Player player: table.players) {

@@ -21,29 +21,12 @@ public class Table {
         this.used_cards= new ArrayList<int[]>();
     }
 
-    public void add_player(Player player){
-        this.players.add(player);
-        this.number_of_players++;
-    }
-
-    public void print_all_cards(){
-        for (Player player: this.players) {
-            System.out.println("The cards of "+" "+player.name + " are:");
-            for (Hand hand: player.hands) {
-                for (Card card: hand.cards){
-                    System.out.println(card.face_value);
-                }
-
-            }
-        }
-    }
-
     public void set_refree(Refree refree){
         this.refree=refree;
     }
 
     public void get_players() {
-        System.out.println("Enter the number of Players:");
+        System.out.println("Enter the number of Players playing:");
         this.number_of_players = scan.nextInt();
         for (int i = 0; i < this.number_of_players; i++) {
             Player temp_player = new Player();
@@ -72,11 +55,11 @@ public class Table {
             boolean flag = true;
             int temp_bet = 0;
             while (flag) {
-                System.out.println("Please enter your bet " + player.name);
+                System.out.println("Please enter your bet " + player.name+" :");
                 temp_bet = scan.nextInt();
                 player.wallet.subtract_value(temp_bet);
                 if (player.wallet.value < 0) {
-                    System.out.println("You don't have enough balance");
+                    System.out.println("You don't have enough balance!");
                     player.wallet.add_value(temp_bet);
                     continue;
                 }
@@ -86,39 +69,22 @@ public class Table {
         }
     }
 
-//    public void print_player_balances(){
-//        for(Player player: this.players) {
-//            System.out.println(player.name+" balance is : "+player.wallet.value);
-//        }
-//    }
-
     public ArrayList<Player> cash_out(){
         ArrayList<Player> playersInGame = new ArrayList<>();
         for(Player player : this.players) {
             playersInGame.add(player);
         }
 
-        //ArrayList<Player> playerCopy = this.players;
+
         Scanner scanner = new Scanner(System.in);
-//        for(Player player : this.players) {
-//            System.out.println("Do you want to cash out "+player.name+" ?\n 1.YES 2.NO");
-//            int choice = scanner.nextInt();
-//            if(choice==1) {
-//                //playersInGame.remove(player);
-//                this.players.remove(player);
-//            }
-//        }
         int intialPlayersSize = this.players.size();
         for(int i=0;i<intialPlayersSize;i++) {
-            System.out.println("Do you want to cash out "+this.players.get(i).name+" ?\n 1.YES 2.NO");
+            System.out.println("Do you want to cash out "+this.players.get(i).name+" ?\n Enter 1 for Yes and 2 for No");
             int choice = scanner.nextInt();
             if(choice==1) {
-                //playersInGame.remove(player);
                 playersInGame.remove(this.players.get(i));
             }
         }
         return playersInGame;
-
     }
-
 }

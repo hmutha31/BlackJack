@@ -10,7 +10,5 @@ public class Card extends Deck {
         this.isFaceDown = false;
     }
 
-    public Card() {
-    }
-
+    public Card() {}
 }

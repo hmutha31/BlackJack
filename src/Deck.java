@@ -44,12 +44,10 @@ public class Deck {
     }
 
     public Deck() {}
-
     public Deck(int no_of_cards, ArrayList<Card> cards) {
         this.no_of_cards = no_of_cards;
         this.cards = cards;
     }
-
 
     public void fillDeck() {
         int i=0;

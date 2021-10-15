@@ -1,6 +1,4 @@
 package src;
-import src.Action;
-import src.Card;
 
 import java.util.*;
 
@@ -10,6 +8,15 @@ public class Player {
     public ArrayList<Hand> hands;
     public Action action;
     private boolean isBusted;
+    private boolean didHitMax;
+
+    public boolean isDidHitMax() {
+        return didHitMax;
+    }
+
+    public void setDidHitMax(boolean didHitMax) {
+        this.didHitMax = didHitMax;
+    }
 
     public boolean isBusted() {
         return isBusted;
@@ -22,6 +29,7 @@ public class Player {
     public Player(String name, int wallet_balance){
         this.name=name;
         this.isBusted = false;
+        this.didHitMax = false;
         this.wallet = new Wallet(wallet_balance);
         this.hands=new ArrayList<Hand>();
         this.hands.add(new Hand());
@@ -33,33 +41,7 @@ public class Player {
         this.hands=new ArrayList<Hand>();
         this.hands.add(new Hand());
         this.isBusted = false;
+        this.didHitMax = false;
     }
-
-    public void split(){
-        Hand new_hand = new Hand();
-        new_hand.addCard(this.hands.get(0).cards.get(0));
-        new_hand.bet=this.hands.get(0).bet;
-        this.hands.get(0).cards.remove(0);
-        this.hands.add(new_hand);
-        this.isBusted = false;
-
-    }
-
-    public void print_cards(){
-        System.out.println("The cards of "+" "+this.name + " are:");
-        for (Hand hand: this.hands) {
-            System.out.println("The cards in hand "+this.hands.indexOf(hand));
-            for (Card card : hand.cards) {
-                System.out.println(card.face_value);
-            }
-        }
-    }
-
-
-
-
-
-
-
 
 }
