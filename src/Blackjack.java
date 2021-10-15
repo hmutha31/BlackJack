@@ -11,8 +11,10 @@ import java.util.Scanner;
 
 public class Blackjack implements Game {
     static Table table = new Table();
+    static int[] minmax = {17,21};
 
-    public static void resetRound(Table table, Dealer dealer) {
+    @Override
+    public void resetRound(Table table, Dealer dealer) {
         /*
         1. reset hands for each player
         2. reset dealers hand
@@ -28,6 +30,39 @@ public class Blackjack implements Game {
         //reset used cards
         table.used_cards = new ArrayList<>();
 
+    }
+
+    @Override
+    public void ask_for_actions(int[] minmax,Dealer dealer) {
+        Action action = new Action();
+        Scanner scanner = new Scanner(System.in);
+        for (Player player: table.players) {
+            for(int i = 0;i<player.hands.size(); i++) {
+                Hand hand = new Hand();
+                hand = player.hands.get(i);
+                if(hand.isBusted()) continue;
+                boolean flag = true;
+                while(flag) {
+                    System.out.println("What do you want to do with hand " + (player.hands.indexOf(hand) + 1) + " " + player.name + "? Hit, Split, Stand....");
+                    System.out.println("Enter 1 for Hit , 2 for Stand, 3 for Split,4 for double,.....");
+                    System.out.println("Current value of your hand is "+hand.get_value_of_hand(minmax[1]));
+                    int player_choice = scanner.nextInt();
+                    if (player_choice == 1) {
+                        ////////do hit stuff
+                        flag = action.hit(hand,dealer,player,table,minmax);
+
+                    } else if (player_choice == 2) {
+                        ////////do stand stuff
+                        flag = action.stand(hand,player);
+
+                    } else if (player_choice == 3) { //for split
+                        flag = action.split(player,hand,dealer);
+                    } else if (player_choice == 4) { //for double up
+                        flag = action.double_up(player,hand,dealer);
+                    }
+                }
+            }
+        }
     }
 
 
@@ -47,16 +82,16 @@ public class Blackjack implements Game {
 
             dealer.deal();                  //give 1 card to each player
             dealer.deal();                  //give 1 card to each player
-            Printer.print_cards_with_hidden(dealer.hand.cards);  //print dealers cards with 1 hidden card
+            Printer.print_cards_with_hidden(dealer.hand.cards,dealer);  //print dealers cards with 1 hidden card
             //table.print_all_cards();        //print all the cards of players
             for(Player player : table.players) {
                 Printer.print_player_cards(player);
             }
-            dealer.ask_for_actions();       //ask for actions
+            ask_for_actions(minmax,dealer);       //ask for actions
             if (!refree.all_busted()) {
-                refree.check_winners();
+                refree.check_winners(minmax);
             }
-            table.print_player_balances();
+            Printer.print_balances(table.players);
             System.out.println("This Round ends");
             //ask for cashing out
             table.players = table.cash_out();

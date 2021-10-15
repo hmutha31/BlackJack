@@ -41,15 +41,39 @@ public class Hand {
 
     }
 
-    public int get_value_of_hand() {
+//    public int get_value_of_hand() {
+//        int temp = 0;
+//        for (Card card : this.cards) {
+//            temp = temp + card.face_value.getValue_of_rank();
+//        }
+//        return temp;
+//    }
+
+    public int get_value_of_hand(int maxValue) {
         int temp = 0;
+        boolean isThereAnAce = false;
         for (Card card : this.cards) {
-            temp = temp + card.face_value.getValue_of_rank();
+            if(card.face_value.getValue_of_rank() == 11)
+                isThereAnAce = true;
         }
+        for (Card card : this.cards) {
+
+            temp = temp + card.face_value.getValue_of_rank();
+
+
+        }
+
+        if(temp > maxValue && isThereAnAce == true)
+        {
+            temp = temp - 10;
+        }
+
         return temp;
     }
 
 }
+
+
 
 
 
