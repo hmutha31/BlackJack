@@ -68,8 +68,8 @@ The following gives a brief description of all the classes used in our code base
 To run this project:
 * Download the necessary files from the /src folder onto your local machine
 * Move down into the directory where the files are located
-* To compile the code- javac Blackjack.java
-* Once the code compiles, to run the game - java Blackjack
+* To compile the code- javac Runner.java
+* Once the code compiles, to run the game - java Runner
 * Follow onscreen instructions to play the game
 
 ## Team Members
