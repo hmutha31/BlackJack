@@ -20,6 +20,9 @@ Project was developed in:
 ## Class Descriptions
 The following gives a brief description of all the classes used in our code base. 
 
+#### Runner
+ * Main class. main() method exists here
+
 #### Game
   * An interface common to Blackjack and Trianta classes. Provides definitions for play() and reset_round()
 
@@ -60,6 +63,10 @@ The following gives a brief description of all the classes used in our code base
 #### Hand
   * Hand class is used to denote a certain set of cards belonging to each playing player and dealer. 
   * It holds a property of busted which denotes if the hand's value exceeds the maximum value allowed by the game.
+
+#### Action
+ * Action class defines various different actions a player can make.
+ * Actions include methods for hit, split, stand, etc.
 
 #### Deck
   * Deck class holds a set of 52 standard playing cards.
