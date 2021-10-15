@@ -20,16 +20,35 @@ public class Refree {
         int sum = hand.get_value_of_hand();
         if(sum<17) {
             while(sum<17) {
+                Printer.print_cards(dealer.hand.cards,dealer);
                 hand.addCard(dealer.pick_a_card());
                 sum = hand.get_value_of_hand();
             }
         }
-        if(sum>=17 && sum<=21) return 0;
+        if(sum>=17 && sum<=21) return 1;
         else return -1;
+    }
+    public boolean all_busted(){
+        int number_of_non_busted =0;
+        for (Player player: this.table.players) {
+            for (Hand hand: player.hands) {
+                if (!hand.isBusted()){
+                    number_of_non_busted+=1;
+                }
+            }
+
+        }
+        if (number_of_non_busted<1){
+            System.out.println("Dealer Wins! Everybody busted!");
+            return true;
+        }
+        return false;
     }
 
     public void check_winners(){
+
         int dealerState = this.checkDealerHand(dealer.hand,dealer);
+        Printer.print_cards(dealer.hand.cards,dealer);
         if(dealerState==1) {
             //dealer is above 17 & less than 21
             int dealerSum = dealer.hand.get_value_of_hand();
