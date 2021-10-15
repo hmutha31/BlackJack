@@ -27,26 +27,27 @@ public class Dealer {
 
     }
 
-    public void print_cards_with_hidden(){
-        System.out.println("The dealer's cards are");
-        int flag=0;
-        for (Card card:this.hand.cards) {
-            if (flag==0){
-                System.out.println("HIDDEN");
-                flag=1;
-                continue;
-            }
-            System.out.println(card.face_value);
-        }
-    }
+
+//    public void print_cards_with_hidden(){
+//        System.out.println("The dealer's cards are");
+//        int flag=0;
+//        for (Card card:this.hand.cards) {
+//            if (flag==0){
+//                System.out.println("HIDDEN");
+//                flag=1;
+//                continue;
+//            }
+//            System.out.println(card.face_value);
+//        }
+//    }
 
 
-    public void print_cards(){
-        System.out.println("The dealer's cards are");
-        for (Card card:this.hand.cards) {
-            System.out.println(card.face_value);
-        }
-    }
+//    public void print_cards(){
+//        System.out.println("The dealer's cards are");
+//        for (Card card:this.hand.cards) {
+//            System.out.println(card.face_value);
+//        }
+//    }
 
 
     public void deal_player(Player player){
@@ -83,7 +84,8 @@ public class Dealer {
                     if (player_choice == 1) {
                         ////////do hit stuff
                         hand.cards.add(this.pick_a_card());
-                        hand.print_cards();
+                        //hand.print_cards();
+                        Printer.print_cards(hand.cards, player);
                         hand.display_Bet();
                         int handState = table.refree.checkHand(hand);
                         switch(handState) {
@@ -105,7 +107,8 @@ public class Dealer {
                     } else if (player_choice == 2) {
                         ////////do stand stuff
 
-                        hand.print_cards();
+                        //hand.print_cards();
+                        Printer.print_cards(hand.cards, player);
                         hand.display_Bet();
                         flag=false;
 
@@ -120,7 +123,8 @@ public class Dealer {
                         }
                         player.split();
                         this.deal_player(player);   //add one card to both hands
-                        player.print_cards();
+                        //player.print_cards();
+                        Printer.print_player_cards(player);
                         hand.display_Bet();
                     } else if (player_choice == 4) { //for double up
                         if (player.wallet.value< hand.bet){
@@ -131,7 +135,8 @@ public class Dealer {
                         hand.bet = hand.bet * 2;
                         hand.cards.add(this.pick_a_card());
                         flag=false;
-                        hand.print_cards();
+                        //hand.print_cards();
+                        Printer.print_cards(hand.cards, player);
                         hand.display_Bet();
                     }
                 }

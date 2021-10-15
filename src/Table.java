@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Table {
@@ -86,6 +87,35 @@ public class Table {
         for(Player player: this.players) {
             System.out.println(player.name+" balance is : "+player.wallet.value);
         }
+    }
+
+    public ArrayList<Player> cash_out(){
+        ArrayList<Player> playersInGame = new ArrayList<>();
+        for(Player player : this.players) {
+            playersInGame.add(player);
+        }
+
+        //ArrayList<Player> playerCopy = this.players;
+        Scanner scanner = new Scanner(System.in);
+//        for(Player player : this.players) {
+//            System.out.println("Do you want to cash out "+player.name+" ?\n 1.YES 2.NO");
+//            int choice = scanner.nextInt();
+//            if(choice==1) {
+//                //playersInGame.remove(player);
+//                this.players.remove(player);
+//            }
+//        }
+        int intialPlayersSize = this.players.size();
+        for(int i=0;i<intialPlayersSize;i++) {
+            System.out.println("Do you want to cash out "+this.players.get(i).name+" ?\n 1.YES 2.NO");
+            int choice = scanner.nextInt();
+            if(choice==1) {
+                //playersInGame.remove(player);
+                playersInGame.remove(this.players.get(i));
+            }
+        }
+        return playersInGame;
+
     }
 
 }

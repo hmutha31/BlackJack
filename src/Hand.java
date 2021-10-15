@@ -29,12 +29,12 @@ public class Hand {
         this.bet = this.bet + bet;
     }
 
-    public void print_cards() {
-        System.out.println("The cards" + " " + " are:");
-        for (Card card : cards) {
-            System.out.println(card.face_value);
-        }
-    }
+//    public void print_cards() {
+//        System.out.println("The cards" + " " + " are:");
+//        for (Card card : cards) {
+//            System.out.println(card.face_value);
+//        }
+//    }
 
     public void display_Bet() {
         System.out.println("The bet is: " + this.bet);
