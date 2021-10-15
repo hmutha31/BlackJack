@@ -20,48 +20,48 @@ Project was developed in:
 ## Class Descriptions
 The following gives a brief description of all the classes used in our code base. 
 
-### Game
+#### Game
   * An interface common to Blackjack and Trianta classes. Provides definitions for play() and reset_round()
 
-### Blackjack
+#### Blackjack
   * Main class to play the game of Blackjack. Implements methods play() and reset_round() as required by the game
   * static variable minmax. minmax[0] returns the minimum value(17) the dealer has to reach. minmax[1] returns the max value(21) before getting busted!
 
-### Trianta
+#### Trianta
   * Main class to play the game of Trianta. Implements methods play() and reset_round() as required by the game
   * static variable minmax. minmax[0] returns the minimum value(27) the dealer has to reach. minmax[1] returns the max value(31) before getting busted!
 
-### Player
+#### Player
   * Player class denoting a player of the game.
   * Each player has a list of hands, and a wallet. 
   * wallet keeps track of the money a player has.
 
-### Dealer
+#### Dealer
   * Dealer class denoting the dealer 
   * Each dealer has a hand, and the functions to deal cards to himself and each player as required.
 
-### Table
+#### Table
   * Table class denoting a table
   * A table has a list of players currently playing on the table, and a stack of decks.
 
-### Printer
+#### Printer
   * A helper class to implement different print functions required by our games. 
 
-### Refree
+#### Refree
   * A helper class to run functions such as checking if a hand is busted or not.
   * Main function is to check for winner after each round ends.
 
-### Wallet
+#### Wallet
   * Class to denote the wallet of each player and dealer(if the game is Trianta).
 
-### Card
+#### Card
   * Class used to denote a card object. Each card has a rank and shape.
 
-### Hand
+#### Hand
   * Hand class is used to denote a certain set of cards belonging to each playing player and dealer. 
   * It holds a property of busted which denotes if the hand's value exceeds the maximum value allowed by the game.
 
-### Deck
+#### Deck
   * Deck class holds a set of 52 standard playing cards.
 
 ## Setup
