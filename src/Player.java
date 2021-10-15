@@ -5,7 +5,7 @@ import src.Card;
 import java.util.*;
 
 public class Player {
-    public int wallet;
+    public Wallet wallet;
     public String name;
     public ArrayList<Hand> hands;
     public Action action;
@@ -22,14 +22,14 @@ public class Player {
     public Player(String name, int wallet_balance){
         this.name=name;
         this.isBusted = false;
-        this.wallet = wallet_balance;
+        this.wallet = new Wallet(wallet_balance);
         this.hands=new ArrayList<Hand>();
         this.hands.add(new Hand());
     }
 
     public Player(){
         this.name="";
-        this.wallet=1000;
+        this.wallet= new Wallet(1000) ;
         this.hands=new ArrayList<Hand>();
         this.hands.add(new Hand());
         this.isBusted = false;
