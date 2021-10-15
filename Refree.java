@@ -1,4 +1,3 @@
-package src;
 
 public class Refree {
     public Table table;

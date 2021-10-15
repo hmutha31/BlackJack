@@ -73,8 +73,6 @@ The following gives a brief description of all the classes used in our code base
 
 ## Setup
 To run this project:
-* Download the necessary files from the /src folder onto your local machine
-* Move down into the directory where the files are located
 * To compile the code- javac Runner.java
 * Once the code compiles, to run the game - java Runner
 * Follow onscreen instructions to play the game

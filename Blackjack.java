@@ -1,4 +1,4 @@
-package src;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -46,7 +46,16 @@ public class Blackjack implements Game {
                     System.out.println("What do you want to do with hand " + (player.hands.indexOf(hand) + 1) + " ," + player.name + "?");
                     System.out.println("Enter 1 for Hit , 2 for Stand, 3 for Split, 4 for double");
                     System.out.println("Current value of your hand is "+hand.get_value_of_hand(minmax[1]));
-                    int player_choice = scanner.nextInt();
+                    int player_choice;
+                    
+                    while(true) {
+                    	player_choice = scanner.nextInt();
+                    	if(player_choice<1 || player_choice>4)
+                    		System.out.println("Please enter a number between 1 to 4");
+                    	else
+                    		break;
+                    }
+                    
                     if (player_choice == 1) {
                         ////////do hit stuff
                         flag = action.hit(hand,dealer,player,table,minmax);

@@ -1,4 +1,3 @@
-package src;
 
 public class Wallet {
     public int value;
