@@ -1,4 +1,3 @@
-package src;
 
 import java.util.ArrayList;
 
@@ -28,6 +27,12 @@ public class Printer {
         }
     }
 
+    
+    public static void print_dealer_balances(Dealer dealer){
+        System.out.println("Dealer's balance is : "+dealer.wallet.value);
+        
+    }
+    
     public static void print_cards(ArrayList<Card> cards, Object person){
         if(person instanceof Dealer) {
             System.out.println("The dealer's cards are : ");

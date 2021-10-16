@@ -1,4 +1,3 @@
-package src;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,8 +28,15 @@ public class Trinata implements Game{
             int choice;
             for(Player player : table.players){
                 System.out.println("Player "+player.name+" Do you want to fold? Please enter 1 for yes and 2 for no ");
-                choice = scan.nextInt();
-
+              
+                while(true) {
+                	choice = scan.nextInt();
+                	if(choice<1 || choice >2) 
+                		System.out.println("Please enter either 1 or 2");
+                	else
+                		break;
+                }
+                
                 if(choice == 1){
                     player.setBusted(true);
                 }
@@ -70,6 +76,7 @@ public class Trinata implements Game{
                 refree.check_winners(minmax);
             }
             Printer.print_balances(table.players);
+            Printer.print_dealer_balances(dealer);
             System.out.println("---------This Round ends---------");
             //ask for cashing out
             table.players = table.cash_out();
@@ -113,7 +120,16 @@ public class Trinata implements Game{
                     System.out.println("What do you want to do with hand " + (player.hands.indexOf(hand) + 1) + " " + player.name + "?");
                     System.out.println("Enter 1 for Hit , 2 for Stand");
                     System.out.println("Current value of your hand is "+hand.get_value_of_hand(minmax[1]));
-                    int player_choice = scanner.nextInt();
+                    int player_choice;
+                    
+                    while(true) {
+                    	player_choice = scanner.nextInt();
+                    	if(player_choice <1 || player_choice >2) 
+                    		System.out.println("Please enter either 1 or 2");
+                    	else
+                    		break;
+                    }
+                    
                     if (player_choice == 1) {
                         ////////do hit stuff
                         flag = action.hit(hand,dealer,player,table,minmax);
